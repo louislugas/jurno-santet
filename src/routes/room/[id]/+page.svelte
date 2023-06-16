@@ -83,7 +83,7 @@
 
     <pre>You:</pre>
     <h1 style:margin-bottom="0">{you.name}</h1>
-    <button style:margin-bottom="4rem" on:click|preventDefault={ready}>{rooms[0].players[2].isReady ? "Unready" : "Ready"}</button>
+    <button style:margin-bottom="4rem" on:click|preventDefault={ready}>{rooms[0].players[arrId].isReady ? "Unready" : "Ready"}</button>
     <br>
 
     <pre>Players List</pre>
