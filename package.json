@@ -27,6 +27,7 @@
 	"type": "module",
 	"dependencies": {
 		"@supabase/supabase-js": "^2.24.0",
+		"@sveltejs/adapter-vercel": "^3.0.1",
 		"ipify": "^6.0.0"
 	}
 }
