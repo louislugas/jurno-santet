@@ -1,7 +1,10 @@
 <script>
-    export let data
-    $:({ passError } = data)
-    $: console.log(passError)
+    /** @type {import('./$types').PageData} */
+    export let data;
+
+    /** @type {import('./$types').ActionData} */
+    export let form;
+
 	let pass = "", 
         id = "",
         player = ""
@@ -25,7 +28,7 @@
         <button>Join</button>
     </form>
 </section>
-{#if passError}
+{#if form?.success == false}
 <p class="passError">Password Incorrect</p>
 {/if}
 

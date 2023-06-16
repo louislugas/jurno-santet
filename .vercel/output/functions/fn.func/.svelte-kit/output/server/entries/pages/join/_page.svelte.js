@@ -5,16 +5,14 @@ const css = {
   map: null
 };
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let passError;
   let { data } = $$props;
+  let { form } = $$props;
   let pass = "", id = "", player = "";
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
+  if ($$props.form === void 0 && $$bindings.form && form !== void 0)
+    $$bindings.form(form);
   $$result.css.add(css);
-  ({ passError } = data);
-  {
-    console.log(passError);
-  }
   return `<h1 class="svelte-1so5opa">Join Room</h1>
 <section><form method="POST"><div><label for="room-id" class="svelte-1so5opa">Room ID</label>
             <input name="room-id" type="text" required${add_attribute("value", id, 0)}></div>
@@ -23,7 +21,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         <div><label for="player-name" class="svelte-1so5opa">Nama: </label>
 			<input name="player-name" type="text" required${add_attribute("value", player, 0)}></div>
         <button>Join</button></form></section>
-${passError ? `<p class="passError svelte-1so5opa">Password Incorrect</p>` : ``}`;
+${form?.success == false ? `<p class="passError svelte-1so5opa">Password Incorrect</p>` : ``}`;
 });
 export {
   Page as default

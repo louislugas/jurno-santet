@@ -36,17 +36,18 @@ const actions = {
         }
       ));
       runFunctions();
+      let c = cookies.getAll();
+      let d = c.filter((d2) => d2.value.includes("role")).map((d2) => JSON.parse(d2.value)).filter((d2) => d2.roomId != id);
+      console.log(d, "cookies check");
+      d.forEach((d2) => cookies.delete(d2.roomId));
       console.log(pass, id, player);
+      return { success: true };
     } else {
-      cookies.set("passError", "true");
+      return { success: false };
     }
   }
 };
-async function load({ cookies }) {
-  let passError = cookies.get("passError");
-  return {
-    passError: passError == "true" ? true : false
-  };
+async function load({ cookies, params }) {
 }
 export {
   actions,

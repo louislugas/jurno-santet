@@ -59,21 +59,26 @@ export const actions = {
             ))
             runFunctions();
 
+            let c = cookies.getAll()
+            let d = (c
+                .filter(d => d.value.includes("role")))
+                .map(d => JSON.parse(d.value))
+                .filter(d => d.roomId != id )
+            console.log(d, "cookies check")
+            d.forEach(d => cookies.delete(d.roomId))
+
             console.log(pass, id, player)
+            return { success: true }
         } else {
-            cookies.set("passError", "true")
+            return { success: false }
         }
+
         
         
     }
 };
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ cookies }) {
-	// @ts-ignore
-	let passError = cookies.get("passError")
-	
-	return {
-        passError: passError == "true" ? true : false
-    }
+export async function load({ cookies, params }) {
+    
 }

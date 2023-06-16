@@ -4,7 +4,10 @@
 	import { onMount } from 'svelte';
 
 	export let data
-    let rooms = [], arrId, allready = false
+    /**
+	 * @type {{ players: any; }[] | null}
+	 */
+    let rooms = [], arrId = 0, allready = false
 
     $: ({ you } = data);
     //$: console.log(rooms, you, "front")
@@ -18,9 +21,10 @@
                 .from("rooms")
                 .select("id, roomId, roomName, players(foreignId, playerName, isReady, role)")
                 .eq("roomId", you.roomId);
+            // @ts-ignore
             arrId = data[0].players.map((d) => d.playerName).indexOf(you.name)
         } catch (error) {
-            console.log(error)
+            console.log(error, "getArrId()")
         }
     }
 
@@ -32,7 +36,7 @@
                 .eq("roomId", $page.params.id);
             rooms = data    
         } catch (error) {
-            console.log(error)
+            console.log(error, "getData()")
         }
     }
 
@@ -53,7 +57,7 @@
             await getData()
             await getArrId()
         } catch (error) {
-            console.log(error)
+            console.log(error, "ready()")
         }
     }
 
