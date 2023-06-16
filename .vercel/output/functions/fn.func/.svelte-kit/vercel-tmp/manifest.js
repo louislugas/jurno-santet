@@ -1,10 +1,10 @@
 export const manifest = {
 	appDir: "_app",
 	appPath: "_app",
-	assets: new Set(["favicon.png"]),
-	mimeTypes: {".png":"image/png"},
+	assets: new Set(["favicon.ico","favicon.png"]),
+	mimeTypes: {".ico":"image/vnd.microsoft.icon",".png":"image/png"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.9263936f.js","app":"_app/immutable/entry/app.55965c0c.js","imports":["_app/immutable/entry/start.9263936f.js","_app/immutable/chunks/index.a6332fa3.js","_app/immutable/chunks/singletons.50d25255.js","_app/immutable/entry/app.55965c0c.js","_app/immutable/chunks/preload-helper.41c905a7.js","_app/immutable/chunks/index.a6332fa3.js"],"stylesheets":[],"fonts":[]},
+		client: {"start":"_app/immutable/entry/start.42290795.js","app":"_app/immutable/entry/app.9eadeb34.js","imports":["_app/immutable/entry/start.42290795.js","_app/immutable/chunks/index.a6332fa3.js","_app/immutable/chunks/singletons.cd87700d.js","_app/immutable/entry/app.9eadeb34.js","_app/immutable/chunks/preload-helper.41c905a7.js","_app/immutable/chunks/index.a6332fa3.js"],"stylesheets":[],"fonts":[]},
 		nodes: [
 			() => import('../output/server/nodes/0.js'),
 			() => import('../output/server/nodes/1.js'),
