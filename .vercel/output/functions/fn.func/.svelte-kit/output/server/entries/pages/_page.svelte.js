@@ -1,4 +1,4 @@
-import { c as create_ssr_component } from "../../chunks/index.js";
+import { c as create_ssr_component } from "../../chunks/index2.js";
 const _page_svelte_svelte_type_style_lang = "";
 const css = {
   code: "h1.svelte-1bqpqdz{font-family:sans-serif}a.svelte-1bqpqdz:link,a.svelte-1bqpqdz:visited,a.svelte-1bqpqdz:active{color:orangered;font-family:sans-serif;text-decoration:none}",

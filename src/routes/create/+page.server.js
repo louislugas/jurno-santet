@@ -1,5 +1,5 @@
 import supabase from '$lib/db'
-
+import { redirect } from '@sveltejs/kit';
 
 let char = "abcdefghijklmnopqrstuvwxyz0123456789".split("");
 	
@@ -19,16 +19,35 @@ export const actions = {
         const formdata = await request.formData()
         let name = formdata.get("room-name")
         let pass = formdata.get("room-password")
-        let sahib = formdata.get("sahib-name")
+        let playername = formdata.get("sahib-name")
 
         let id = createId()
 
         cookies.set(id, JSON.stringify({
-            "role": "sahib",
-            "id": id,
-            "name": typeof(sahib) == "string" ? sahib : ""
+            "roomId": id,
+            "name": typeof(playername) == "string" ? playername : ""
             } 
-        ))
+        ), {
+            httpOnly: true,
+            path: '/',
+            maxAge: 60 * 60 * 3
+          })
+
+        let c = cookies.getAll()
+        console.log(c, "c")
+        let d = (c
+            .filter(d => d.value.includes("roomId")))
+            .map(d => JSON.parse(d.value))
+            .filter(d => d.roomId != id )
+        console.log(d, "cookies check d")
+        d.forEach(e => {
+            console.log(e, "e");
+            cookies.set(e.roomId, '', {
+                httpOnly: true,
+                path: '/',
+                maxAge: 0
+              })
+        })
 
         async function readId() {
             let {data: roomdata, error: roomerror} = await supabase
@@ -56,8 +75,8 @@ export const actions = {
                 .insert([{
                     foreignId:foreignId,
                     roomId:id,
-                    role:"sahib",
-                    playerName: sahib,
+                    role:"player",
+                    playerName: playername,
                     isReady: false,
                 }])
         }
@@ -73,11 +92,15 @@ export const actions = {
               // Handle errors
               console.error(error);
             }
+            if (id) {
+                throw redirect(303, `/room/${id}`)
+            }
+            
         }
 
-        runFunctions();
+        await runFunctions();
 
-        console.log(name, pass, id, sahib)
+        console.log(name, pass, id, playername)
         
     }
 };

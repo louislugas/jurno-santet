@@ -1,24 +1,20 @@
 <script>
-	import { json } from '@sveltejs/kit';
-
-    /** @type {import('./$types').PageData} */
     export let data;
 
-    /** @type {import('./$types').ActionData} */
     export let form;
 
 	let pass = "", 
         id = "",
         player = ""
 
+    $: console.log(data)
 </script>
 
 <h1>Join Room</h1>
 <section>
     <form method="POST">
         <div>
-            <label for="room-id">Room ID</label>
-            <input name="room-id" type="text" bind:value={id} required>
+            <h3>{data.roomId}</h3>
         </div>
         <div>
             <label for="room-password">Password</label>
@@ -31,8 +27,8 @@
         <button>Join</button>
     </form>
 </section>
-{#if form?.success == false }
-    <p class="passError">Password incorrect</p>
+{#if form?.success == false}
+<p class="passError">Password Incorrect</p>
 {/if}
 
 <style>

@@ -1,4 +1,5 @@
 import { s as supabase } from "../../../chunks/db.js";
+import { r as redirect } from "../../../chunks/index.js";
 let char = "abcdefghijklmnopqrstuvwxyz0123456789".split("");
 function createId() {
   let chars = [];
@@ -46,6 +47,7 @@ const actions = {
         const playerData = await readId();
         console.log(playerData[0].id);
         await createPlayer(playerData[0].id);
+        throw redirect(303, `/room/${id}`);
       } catch (error) {
         console.error(error);
       }

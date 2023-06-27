@@ -1,4 +1,4 @@
-import { c as create_ssr_component, f as each, e as escape } from "../../../chunks/index.js";
+import { c as create_ssr_component, f as each, e as escape } from "../../../chunks/index2.js";
 const _page_svelte_svelte_type_style_lang = "";
 const css = {
   code: "h1.svelte-1epbkw{font-family:sans-serif}a.svelte-1epbkw{color:black;font-family:sans-serif}",

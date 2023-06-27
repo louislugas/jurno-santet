@@ -1,4 +1,5 @@
 import { s as supabase } from "../../../chunks/db.js";
+import { r as redirect } from "../../../chunks/index.js";
 const actions = {
   default: async ({ request, cookies }) => {
     const formdata = await request.formData();
@@ -41,6 +42,9 @@ const actions = {
       console.log(d, "cookies check");
       d.forEach((d2) => cookies.delete(d2.roomId));
       console.log(pass, id, player);
+      if (id) {
+        throw redirect(303, `/room/${id}`);
+      }
       return { success: true };
     } else {
       return { success: false };

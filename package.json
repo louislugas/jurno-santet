@@ -21,6 +21,7 @@
 		"prettier-plugin-svelte": "^2.8.1",
 		"svelte": "^3.54.0",
 		"svelte-check": "^3.0.1",
+		"svelte-visibility-change": "^0.6.0",
 		"typescript": "^5.0.0",
 		"vite": "^4.3.0"
 	},
@@ -28,6 +29,7 @@
 	"dependencies": {
 		"@supabase/supabase-js": "^2.24.0",
 		"@sveltejs/adapter-vercel": "^3.0.1",
+		"d3": "^7.8.5",
 		"ipify": "^6.0.0"
 	}
 }
